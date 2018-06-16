@@ -17,5 +17,8 @@
         "psr-4": {
             "DynamicComponents\\": "src/"
         }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.12"
     }
 }

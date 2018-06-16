@@ -17,9 +17,9 @@ class Radio extends \DynamicComponents\Controls\Radio
     private $flipped = [];
 
     /**
-     * @param string[]        $options
-     * @param callable|null   $onSelected
-     * @param int|string|null $selected   Text or index of option to be selected (null for default)
+     * @param string[]        $options    Keys are ignored!
+     * @param callable|null   $onSelected Gets $this as first param
+     * @param int|string|null $selected   Index or text of option to be selected (null for default)
      */
     public function __construct(array $options, ?callable $onSelected = null, $selected = 0)
     {
