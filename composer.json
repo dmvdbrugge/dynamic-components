@@ -1,0 +1,21 @@
+{
+    "name": "dmvdbrugge/dynamic-components",
+    "description": "Dynamic Components for the PHP UI extension",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dave van der Brugge",
+            "email": "dmvdbrugge@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">= 7.1",
+        "ext-ui": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "DynamicComponents\\": "src/"
+        }
+    }
+}
