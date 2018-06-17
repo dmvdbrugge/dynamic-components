@@ -1,9 +1,11 @@
-GLOBAL_COMPOSER := $(shell command -v composer 2> /dev/null)
+GLOBAL_COMPOSER := $(shell command -v composer 2> /dev/null || command -v composer.phar 2> /dev/null)
 
 ifdef GLOBAL_COMPOSER
-COMPOSER=composer
-else
+COMPOSER=$(GLOBAL_COMPOSER)
+else ifneq (, $(wildcard composer.phar))
 COMPOSER=php composer.phar
+else
+ERR := $(error No composer or composer.phar found; please https://getcomposer.org  )
 endif
 
 .PHONY: install
