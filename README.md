@@ -10,7 +10,7 @@ This is still a work in progress.
 **TODO**
 * Update this README with documentation and examples
 * Test everything (and use Travis)
-* Code style with php-cs-fixer (and use fabbot.io ?)
+* php-cs-fixer in Travis? (fabbot.io not public :sob: )
 
 ## License
 MIT License
