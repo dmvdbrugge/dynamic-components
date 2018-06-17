@@ -11,10 +11,7 @@ endif
 .PHONY: install
 install: vendor/autoload.php
 
-composer.lock:
-	$(COMPOSER) install
-
-vendor/autoload.php: composer.json composer.lock
+vendor/autoload.php: composer.json
 	$(COMPOSER) install
 
 .PHONY: fix-cs
