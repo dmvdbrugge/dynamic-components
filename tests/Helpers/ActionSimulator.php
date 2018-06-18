@@ -2,10 +2,10 @@
 
 namespace Tests\Helpers;
 
-use DynamicComponents\Controls;
 use InvalidArgumentException;
 use ReflectionClass;
 use UI\Control;
+use UI\Controls;
 
 use function get_class;
 
@@ -47,6 +47,6 @@ class ActionSimulator
             }
         }
 
-        throw new InvalidArgumentException(get_class($control) . ' is not one of DynamicComponents\Controls');
+        throw new InvalidArgumentException(get_class($control) . ' is not one of UI\Controls');
     }
 }
