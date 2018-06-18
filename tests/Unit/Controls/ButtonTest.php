@@ -10,12 +10,12 @@ class ButtonTest extends TestCase
 {
     public function testButtonWorks(): void
     {
-        $button = new Button('Click Me!', function (/** @var Button $btn */ $btn = null) {
+        $button = new Button('Click Me!', function (/** @var Button $control */ $control = null) {
             // The button should be given as first param to the callback
-            self::assertInstanceOf(Button::class, $btn);
+            self::assertInstanceOf(Button::class, $control);
 
             // The text should've been passed through
-            self::assertEquals('Click Me!', $btn->getText());
+            self::assertEquals('Click Me!', $control->getText());
         });
 
         ActionSimulator::act($button);
