@@ -18,7 +18,13 @@
             "DynamicComponents\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.12"
+        "friendsofphp/php-cs-fixer": "^2.12",
+        "phpunit/phpunit": "^7"
     }
 }

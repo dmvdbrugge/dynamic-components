@@ -22,6 +22,9 @@ fix-cs: vendor/autoload.php
 fix-cs-all: vendor/autoload.php
 	vendor/bin/php-cs-fixer fix --using-cache=no --verbose
 
+.PHONY: unittests
+unittests: vendor/autoload.php
+	vendor/bin/phpunit --testsuite=unittests
+
 .PHONY: tests
-tests: vendor/autoload.php
-	# TODO ;)
+tests: unittests
