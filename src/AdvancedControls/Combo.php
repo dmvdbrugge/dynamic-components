@@ -2,8 +2,6 @@
 
 namespace DynamicComponents\AdvancedControls;
 
-use UI\Exception\InvalidArgumentException;
-
 use function count;
 use function is_int;
 use function is_string;
@@ -17,9 +15,9 @@ class Combo extends \DynamicComponents\Controls\Combo
     private $flipped = [];
 
     /**
-     * @param string[]        $options    Keys are ignored!
-     * @param callable|null   $onSelected Gets $this as first param
-     * @param int|string|null $selected   Index or text of option to be selected (null for default)
+     * @param string[]      $options    Keys are ignored!
+     * @param callable|null $onSelected Gets $this as first param
+     * @param int|string    $selected   Index or text of option to be selected
      */
     public function __construct(array $options, ?callable $onSelected = null, $selected = 0)
     {
@@ -46,15 +44,15 @@ class Combo extends \DynamicComponents\Controls\Combo
 
     public function getSelectedText(): string
     {
-        return $this->options[$this->getSelected()];
+        return $this->options[$this->getSelected()] ?? '';
     }
 
     public function setSelectedText(string $text): void
     {
-        if (!isset($this->flipped[$text])) {
-            throw new InvalidArgumentException("Cannot select {$text}: it's not in options!");
-        }
-
-        $this->setSelected($this->flipped[$text]);
+        /*
+         * \UI\Controls\Combo::setSelected() allows any index to be set,
+         * however non-existing indices (except 0) will become -1
+         */
+        $this->setSelected($this->flipped[$text] ?? -1);
     }
 }

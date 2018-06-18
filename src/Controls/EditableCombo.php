@@ -7,9 +7,11 @@ class EditableCombo extends \UI\Controls\EditableCombo
     /** @var callable|null */
     private $onChange;
 
-    public function __construct(?callable $onChange = null)
+    public function __construct(?callable $onChange = null, string $text = '')
     {
         $this->onChange = $onChange;
+
+        $this->setText($text);
     }
 
     public function setOnChange(callable $onChange): void
