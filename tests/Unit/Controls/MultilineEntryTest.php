@@ -33,25 +33,25 @@ class MultilineEntryTest extends TestCase
 
     public function testMultilineEntryWithoutCallbackAndSetOnChange(): void
     {
-        $entry = new MultilineEntry();
+        $multilineEntry = new MultilineEntry();
 
         // This should just do nothing, successfully
-        ActionSimulator::act($entry);
+        ActionSimulator::act($multilineEntry);
 
         $actual = 0;
-        $entry->setOnChange(function () use (&$actual) {
+        $multilineEntry->setOnChange(function () use (&$actual) {
             $actual = 1;
         });
 
-        ActionSimulator::act($entry);
+        ActionSimulator::act($multilineEntry);
 
         self::assertEquals(1, $actual);
 
-        $entry->setOnChange(function () use (&$actual) {
+        $multilineEntry->setOnChange(function () use (&$actual) {
             $actual = 2;
         });
 
-        ActionSimulator::act($entry);
+        ActionSimulator::act($multilineEntry);
 
         self::assertEquals(2, $actual);
     }

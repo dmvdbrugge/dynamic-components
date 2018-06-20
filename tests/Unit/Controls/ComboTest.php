@@ -51,4 +51,23 @@ class ComboTest extends TestCase
 
         self::assertEquals(2, $actual);
     }
+
+    public function testComboQuirks(): void
+    {
+        // Default selected is 0, even though it doesn't exist
+        $combo = new Combo();
+        self::assertEquals(0, $combo->getSelected());
+
+        // Setting a positive out-of-bounds selected becomes -1
+        $combo->setSelected(5);
+        self::assertEquals(-1, $combo->getSelected());
+
+        // Setting back to 0 works even though it still doesn't exist
+        $combo->setSelected(0);
+        self::assertEquals(0, $combo->getSelected());
+
+        // Setting a negative out-of-bounds selected breaks stuff
+        // This will SIGABRT on Mac
+        // $combo->setSelected(-5);
+    }
 }
