@@ -19,7 +19,7 @@ class Radio extends \DynamicComponents\Controls\Radio
      * @param callable|null $onSelected Gets $this as first param
      * @param int|string    $selected   Index or text of option to be selected
      */
-    public function __construct(array $options, ?callable $onSelected = null, $selected = 0)
+    public function __construct(array $options, ?callable $onSelected = null, $selected = -1)
     {
         parent::__construct($onSelected);
 
@@ -51,7 +51,7 @@ class Radio extends \DynamicComponents\Controls\Radio
     {
         /*
          * \UI\Controls\Radio::setSelected() allows any index to be set,
-         * however non-existing indices (except 0) will become -1
+         * however non-existing indices will become -1
          */
         $this->setSelected($this->flipped[$text] ?? -1);
     }
