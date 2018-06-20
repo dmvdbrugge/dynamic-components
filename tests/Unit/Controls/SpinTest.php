@@ -53,6 +53,8 @@ class SpinTest extends TestCase
         // Default value is the lowest of min and max
         $spin = new Spin(5, 10);
         self::assertEquals(5, $spin->getValue());
+        self::assertEquals(5, $spin->getMin());
+        self::assertEquals(10, $spin->getMax());
 
         // Lower than min becomes min
         $spin->setValue(2);
@@ -66,6 +68,8 @@ class SpinTest extends TestCase
         // And everything then works the same
         $spin2 = new Spin(10, 5);
         self::assertEquals(5, $spin2->getValue());
+        self::assertEquals(5, $spin2->getMin());
+        self::assertEquals(10, $spin2->getMax());
 
         $spin2->setValue(2);
         self::assertEquals(5, $spin2->getValue());
@@ -76,6 +80,8 @@ class SpinTest extends TestCase
         // Negative values, all the same
         $spin3 = new Spin(-10, -5);
         self::assertEquals(-10, $spin3->getValue());
+        self::assertEquals(-10, $spin3->getMin());
+        self::assertEquals(-5, $spin3->getMax());
 
         $spin3->setValue(2);
         self::assertEquals(-5, $spin3->getValue());
@@ -86,6 +92,8 @@ class SpinTest extends TestCase
         // Negative values but switched, same behaviour
         $spin4 = new Spin(-5, -10);
         self::assertEquals(-10, $spin4->getValue());
+        self::assertEquals(-10, $spin4->getMin());
+        self::assertEquals(-5, $spin4->getMax());
 
         $spin4->setValue(2);
         self::assertEquals(-5, $spin4->getValue());

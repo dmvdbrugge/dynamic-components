@@ -60,9 +60,8 @@ class MultilineEntryTest extends TestCase
     public function testTypesAreValid()
     {
         foreach (MultilineEntry::TYPES as $type) {
-            new MultilineEntry($type);
-
-            $this->addToAssertionCount(1);
+            $multilineEntry = new MultilineEntry($type);
+            self::assertEquals($type, $multilineEntry->getType());
         }
     }
 

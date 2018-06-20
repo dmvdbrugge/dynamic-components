@@ -2,8 +2,17 @@
 
 namespace DynamicComponents\Controls;
 
+use function max;
+use function min;
+
 class Slider extends \UI\Controls\Slider
 {
+    /** @var int */
+    private $max;
+
+    /** @var int */
+    private $min;
+
     /** @var callable|null */
     private $onChange;
 
@@ -11,11 +20,25 @@ class Slider extends \UI\Controls\Slider
     {
         parent::__construct($min, $max);
 
+        // Yes \UI\Controls\Slider excepts them the other way around...
+        $this->max = max($min, $max);
+        $this->min = min($min, $max);
+
         $this->onChange = $onChange;
 
         if ($value !== null) {
             $this->setValue($value);
         }
+    }
+
+    public function getMax(): int
+    {
+        return $this->max;
+    }
+
+    public function getMin(): int
+    {
+        return $this->min;
     }
 
     public function setOnChange(callable $onChange): void

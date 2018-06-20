@@ -55,9 +55,8 @@ class EntryTest extends TestCase
     public function testTypesAreValid()
     {
         foreach (Entry::TYPES as $type) {
-            new Entry($type);
-
-            $this->addToAssertionCount(1);
+            $entry = new Entry($type);
+            self::assertEquals($type, $entry->getType());
         }
     }
 

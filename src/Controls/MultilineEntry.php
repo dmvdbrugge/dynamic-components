@@ -14,6 +14,9 @@ class MultilineEntry extends \UI\Controls\MultilineEntry
     /** @var callable|null */
     private $onChange;
 
+    /** @var int */
+    private $type;
+
     public function __construct(
         int $type = MultilineEntry::Wrap,
         ?callable $onChange = null,
@@ -27,9 +30,15 @@ class MultilineEntry extends \UI\Controls\MultilineEntry
         parent::__construct($type);
 
         $this->onChange = $onChange;
+        $this->type     = $type;
 
         $this->setText($text);
         $this->setReadOnly($readOnly);
+    }
+
+    public function getType(): int
+    {
+        return $this->type;
     }
 
     public function setOnChange(callable $onChange): void

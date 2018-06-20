@@ -17,6 +17,9 @@ class Entry extends \UI\Controls\Entry
     /** @var callable|null */
     private $onChange;
 
+    /** @var int */
+    private $type;
+
     public function __construct(
         int $type = Entry::Normal,
         ?callable $onChange = null,
@@ -30,9 +33,15 @@ class Entry extends \UI\Controls\Entry
         parent::__construct($type);
 
         $this->onChange = $onChange;
+        $this->type     = $type;
 
         $this->setText($text);
         $this->setReadOnly($readOnly);
+    }
+
+    public function getType(): int
+    {
+        return $this->type;
     }
 
     public function setOnChange(callable $onChange): void
