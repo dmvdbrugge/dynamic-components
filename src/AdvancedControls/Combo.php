@@ -2,7 +2,7 @@
 
 namespace DynamicComponents\AdvancedControls;
 
-use function count;
+use function array_search;
 use function is_int;
 use function is_string;
 
@@ -10,9 +10,6 @@ class Combo extends \DynamicComponents\Controls\Combo
 {
     /** @var string[] */
     private $options = [];
-
-    /** @var array String indexed int[], as if array_flip($this->options) */
-    private $flipped = [];
 
     /**
      * @param string[]      $options    Keys are ignored!
@@ -23,9 +20,7 @@ class Combo extends \DynamicComponents\Controls\Combo
     {
         parent::__construct($onSelected);
 
-        foreach ($options as $value) {
-            $this->append($value);
-        }
+        $this->appendAll($options);
 
         if (is_int($selected)) {
             $this->setSelected($selected);
@@ -38,8 +33,25 @@ class Combo extends \DynamicComponents\Controls\Combo
     {
         parent::append($text);
 
-        $this->flipped[$text] = count($this->options);
-        $this->options[]      = $text;
+        $this->options[] = $text;
+    }
+
+    /**
+     * @param string[] $options
+     */
+    public function appendAll(array $options): void
+    {
+        foreach ($options as $option) {
+            $this->append($option);
+        }
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getOptions(): array
+    {
+        return $this->options;
     }
 
     public function getSelectedText(): string
@@ -51,8 +63,13 @@ class Combo extends \DynamicComponents\Controls\Combo
     {
         /*
          * \UI\Controls\Combo::setSelected() allows any index to be set,
-         * however non-existing indices (except 0) will become -1
+         * however non-existing indices (except 0) will become -1.
+         * \DynamicComponents\Controls\Combo overrides that to be
+         * 0 <= $index <= $this->maxIndex
+         * however we cannot compare anything thus we will become 0.
          */
-        $this->setSelected($this->flipped[$text] ?? -1);
+        $index = array_search($text, $this->options);
+
+        $this->setSelected((int) $index);
     }
 }
