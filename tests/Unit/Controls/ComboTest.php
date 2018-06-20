@@ -59,15 +59,18 @@ class ComboTest extends TestCase
         self::assertEquals(0, $combo->getSelected());
 
         // Setting a positive out-of-bounds selected becomes -1
+        // This however breaks stuff thus we changed it to become the last item
+        // (Or 0 when there is no item...)
         $combo->setSelected(5);
-        self::assertEquals(-1, $combo->getSelected());
+        self::assertEquals(0, $combo->getSelected());
 
-        // Setting back to 0 works even though it still doesn't exist
+        // Setting to 0 works even though it still doesn't exist
         $combo->setSelected(0);
         self::assertEquals(0, $combo->getSelected());
 
         // Setting a negative out-of-bounds selected breaks stuff
-        // This will SIGABRT on Mac
-        // $combo->setSelected(-5);
+        // This will SIGABRT on Mac if not handled properly
+        $combo->setSelected(-5);
+        self::assertEquals(0, $combo->getSelected());
     }
 }

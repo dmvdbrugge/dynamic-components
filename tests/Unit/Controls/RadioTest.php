@@ -57,22 +57,35 @@ class RadioTest extends TestCase
         $radio = new Radio();
         self::assertEquals(-1, $radio->getSelected());
 
-        // Setting a positive out-of-bounds selected breaks stuff
-        // This will SIGABRT on Mac
-        // $radio->setSelected(5);
+        // Setting anything out-of-bounds selected breaks stuff
+        // This will SIGABRT on Mac if not handled properly
+        $radio->setSelected(5);
+        self::assertEquals(-1, $radio->getSelected());
 
-        // Zero is "positive out-of-bounds" for empty array
+        // Zero is out-of-bounds for empty array
         // So this will break as well
-        // $radio->setSelected(0);
+        $radio->setSelected(0);
+        self::assertEquals(-1, $radio->getSelected());
 
+        // As do all negative values except for -1
+        $radio->setSelected(-5);
+        self::assertEquals(-1, $radio->getSelected());
+
+        // But we can always set -1
         $radio->setSelected(-1);
         self::assertEquals(-1, $radio->getSelected());
 
+        // Of course we can always set the index of what we add
         $radio->append('Zero');
         $radio->setSelected(0);
         self::assertEquals(0, $radio->getSelected());
 
+        // Now back to negative -1 should still work
         $radio->setSelected(-1);
         self::assertEquals(-1, $radio->getSelected());
+
+        // And setting positive out-of-bounds should now be 0
+        $radio->setSelected(5);
+        self::assertEquals(0, $radio->getSelected());
     }
 }
