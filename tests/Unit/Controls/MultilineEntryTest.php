@@ -5,6 +5,7 @@ namespace Tests\Unit\Controls;
 use DynamicComponents\Controls\MultilineEntry;
 use PHPUnit\Framework\TestCase;
 use Tests\Helpers\ActionSimulator;
+use UI\Exception\InvalidArgumentException;
 
 class MultilineEntryTest extends TestCase
 {
@@ -54,5 +55,24 @@ class MultilineEntryTest extends TestCase
         ActionSimulator::act($multilineEntry);
 
         self::assertEquals(2, $actual);
+    }
+
+    public function testTypesAreValid()
+    {
+        foreach (MultilineEntry::TYPES as $type) {
+            new MultilineEntry($type);
+
+            $this->addToAssertionCount(1);
+        }
+    }
+
+    public function testInvalidTypeThrows()
+    {
+        $invalidType = -5;
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Type {$invalidType} is not a valid MultilineEntry type.");
+
+        new MultilineEntry($invalidType);
     }
 }

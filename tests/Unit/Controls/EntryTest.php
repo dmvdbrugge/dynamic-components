@@ -5,6 +5,7 @@ namespace Tests\Unit\Controls;
 use DynamicComponents\Controls\Entry;
 use PHPUnit\Framework\TestCase;
 use Tests\Helpers\ActionSimulator;
+use UI\Exception\InvalidArgumentException;
 
 class EntryTest extends TestCase
 {
@@ -49,5 +50,24 @@ class EntryTest extends TestCase
         ActionSimulator::act($entry);
 
         self::assertEquals(2, $actual);
+    }
+
+    public function testTypesAreValid()
+    {
+        foreach (Entry::TYPES as $type) {
+            new Entry($type);
+
+            $this->addToAssertionCount(1);
+        }
+    }
+
+    public function testInvalidTypeThrows()
+    {
+        $invalidType = -5;
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Type {$invalidType} is not a valid Entry type.");
+
+        new Entry($invalidType);
     }
 }

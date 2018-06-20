@@ -2,8 +2,18 @@
 
 namespace DynamicComponents\Controls;
 
+use UI\Exception\InvalidArgumentException;
+
+use function in_array;
+
 class Entry extends \UI\Controls\Entry
 {
+    public const TYPES = [
+        Entry::Normal,
+        Entry::Password,
+        Entry::Search,
+    ];
+
     /** @var callable|null */
     private $onChange;
 
@@ -13,6 +23,10 @@ class Entry extends \UI\Controls\Entry
         string $text = '',
         bool $readOnly = false
     ) {
+        if (!in_array($type, self::TYPES)) {
+            throw new InvalidArgumentException("Type {$type} is not a valid Entry type.");
+        }
+
         parent::__construct($type);
 
         $this->onChange = $onChange;
