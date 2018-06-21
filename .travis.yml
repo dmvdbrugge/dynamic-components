@@ -1,10 +1,25 @@
 language: php
 
 php:
-- 7.1
-- 7.2
-- nightly
+  - 7.1
+  - 7.2
+  - nightly
 
 install:
-- pecl install ui-beta
-- make vendor/autoload.php
+#  - echo $PATH
+#  - mkdir deps
+#  - mkdir deps/lib
+#  - mkdir deps/include
+  - git clone --depth=1 https://github.com/andlabs/libui
+  - cd libui
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make -j4
+#  - cp out/libui.* ../../deps/lib
+#  - cp ../ui*.h ../../deps/include
+  - cp out/libui.* ../../
+  - cp ../ui*.h ../../
+  - cd ../../
+  - pecl install ui-beta
+  - make vendor/autoload.php
