@@ -3,7 +3,8 @@ language: php
 php:
 - 7.1
 - 7.2
-- 7.3
 - nightly
 
-install: make vendor/autoload.php
+install:
+- pecl install ui-beta
+- make vendor/autoload.php
