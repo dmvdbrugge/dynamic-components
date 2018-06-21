@@ -5,6 +5,11 @@ php:
   - 7.2
   - nightly
 
+addons:
+  apt:
+    packages:
+      - libgtk-3-dev
+
 install:
 #  - echo $PATH
 #  - mkdir deps
