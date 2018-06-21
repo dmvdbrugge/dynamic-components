@@ -7,7 +7,7 @@ This is still a work in progress.
 
 **TODO**
 * Update this README with documentation and examples
-* Test everything (and use Travis)
+* Implement Travis for automated testing. Does it even support php ui?
 * php-cs-fixer in Travis? (fabbot.io not public :sob: )
 * Tag either v0.1.0 or v1.0.0 :wink:
 
