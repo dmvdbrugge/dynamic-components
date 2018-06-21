@@ -57,7 +57,7 @@ class MultilineEntryTest extends TestCase
         self::assertEquals(2, $actual);
     }
 
-    public function testTypesAreValid()
+    public function testTypesAreValid(): void
     {
         foreach (MultilineEntry::TYPES as $type) {
             $multilineEntry = new MultilineEntry($type);
@@ -65,7 +65,7 @@ class MultilineEntryTest extends TestCase
         }
     }
 
-    public function testInvalidTypeThrows()
+    public function testInvalidTypeThrows(): void
     {
         $invalidType = -5;
 

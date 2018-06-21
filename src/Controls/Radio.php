@@ -2,9 +2,6 @@
 
 namespace DynamicComponents\Controls;
 
-use function max;
-use function min;
-
 class Radio extends \UI\Controls\Radio
 {
     /** @var int */
@@ -32,8 +29,9 @@ class Radio extends \UI\Controls\Radio
 
     public function setSelected(int $index): void
     {
-        // -1 <= $index <= $this->maxIndex
-        $index = max(-1, min($index, $this->maxIndex));
+        if ($index < -1 || $index > $this->maxIndex) {
+            $index = -1;
+        }
 
         parent::setSelected($index);
     }

@@ -2,9 +2,6 @@
 
 namespace DynamicComponents\Controls;
 
-use function max;
-use function min;
-
 class Combo extends \UI\Controls\Combo
 {
     /** @var int */
@@ -32,8 +29,9 @@ class Combo extends \UI\Controls\Combo
 
     public function setSelected(int $index): void
     {
-        // 0 <= $index <= $this->maxIndex (unless $this->maxIndex == -1, then $index = 0)
-        $index = max(0, min($index, $this->maxIndex));
+        if ($index < -1 || ($index > $this->maxIndex && $index !== 0)) {
+            $index = -1;
+        }
 
         parent::setSelected($index);
     }

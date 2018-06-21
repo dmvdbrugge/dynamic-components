@@ -63,13 +63,11 @@ class Combo extends \DynamicComponents\Controls\Combo
     {
         /*
          * \UI\Controls\Combo::setSelected() allows any index to be set,
-         * however non-existing indices (except 0) will become -1.
-         * \DynamicComponents\Controls\Combo overrides that to be
-         * 0 <= $index <= $this->maxIndex
-         * however we cannot compare anything thus we will become 0.
+         * however non-existing indices will become -1.
          */
         $index = array_search($text, $this->options);
+        $index = $index === false ? -1 : $index;
 
-        $this->setSelected((int) $index);
+        $this->setSelected($index);
     }
 }

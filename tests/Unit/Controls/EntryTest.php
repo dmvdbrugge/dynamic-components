@@ -52,7 +52,7 @@ class EntryTest extends TestCase
         self::assertEquals(2, $actual);
     }
 
-    public function testTypesAreValid()
+    public function testTypesAreValid(): void
     {
         foreach (Entry::TYPES as $type) {
             $entry = new Entry($type);
@@ -60,7 +60,7 @@ class EntryTest extends TestCase
         }
     }
 
-    public function testInvalidTypeThrows()
+    public function testInvalidTypeThrows(): void
     {
         $invalidType = -5;
 

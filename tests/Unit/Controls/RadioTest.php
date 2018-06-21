@@ -75,17 +75,17 @@ class RadioTest extends TestCase
         $radio->setSelected(-1);
         self::assertEquals(-1, $radio->getSelected());
 
-        // Of course we can always set the index of what we add
-        $radio->append('Zero');
-        $radio->setSelected(0);
-        self::assertEquals(0, $radio->getSelected());
+        // We have options now, but selected stays -1
+        $radio->append('We have');
+        $radio->append('Text now');
+        self::assertEquals(-1, $radio->getSelected());
+
+        // Of course we can always set the index of what we added
+        $radio->setSelected(1);
+        self::assertEquals(1, $radio->getSelected());
 
         // Now back to negative -1 should still work
         $radio->setSelected(-1);
         self::assertEquals(-1, $radio->getSelected());
-
-        // And setting positive out-of-bounds should now be 0
-        $radio->setSelected(5);
-        self::assertEquals(0, $radio->getSelected());
     }
 }
