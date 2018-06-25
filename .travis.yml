@@ -20,7 +20,7 @@ cache:
 
 stages:
   - code style
-  - test
+#  - test
 
 jobs:
   include:
