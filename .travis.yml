@@ -20,5 +20,6 @@ install:
   - cd ..
   - export PATH=$PATH:$PWD:$PWD/build/out
   - cd ..
+  - echo $PATH
   - pecl install ui-2.0.0
   - make vendor/autoload.php
