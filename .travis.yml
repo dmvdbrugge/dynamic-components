@@ -5,8 +5,6 @@ php:
   - 7.2
   - nightly
 
-sudo: true
-
 addons:
   apt:
     packages:
@@ -19,8 +17,8 @@ install:
   - cd build
   - cmake ..
   - make -j4
-  - sudo cp out/libui.* /usr/local/lib
-  - sudo cp ../ui*.h /usr/local/include
+  - cp out/libui.* /usr/local/lib
+  - cp ../ui*.h /usr/local/include
   - cd ../..
   - pecl install ui-2.0.0
   - make vendor/autoload.php
