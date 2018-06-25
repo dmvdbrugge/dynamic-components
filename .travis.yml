@@ -13,7 +13,6 @@ addons:
 install:
   - git clone --branch=release https://github.com/krakjoe/ui
   - cd ui
-  - git checkout a7020afbb6d5c948c25021329277f849ee4610f6
   - mkdir deps
   - mkdir deps/lib
   - mkdir deps/include
