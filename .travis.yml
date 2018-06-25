@@ -1,18 +1,18 @@
 language: php
 
-php:
-  - 7.1
-  - 7.2
-  - nightly
+#php:
+#  - 7.1
+#  - 7.2
+#  - nightly
 
-matrix:
-  allow_failures:
-    - php: nightly
+#matrix:
+#  allow_failures:
+#    - php: nightly
 
-addons:
-  apt:
-    packages:
-      - libgtk-3-dev
+#addons:
+#  apt:
+#    packages:
+#      - libgtk-3-dev
 
 cache:
   directories:
@@ -20,7 +20,7 @@ cache:
 
 stages:
   - code style
-#  - test
+  - test
 
 jobs:
   include:
