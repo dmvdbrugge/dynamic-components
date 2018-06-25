@@ -18,6 +18,8 @@ jobs:
   include:
   - php: 7.1
     install: composer install --ignore-platform-reqs
+    addons: skip
+    env: CODE=STYLE
     script: vendor/bin/php-cs-fixer fix --using-cache=no --verbose --dry-run
 
 install:
