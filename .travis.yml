@@ -7,20 +7,29 @@ php:
 
 matrix:
   allow_failures:
-  - php: nightly
+    - php: nightly
 
 addons:
   apt:
     packages:
       - libgtk-3-dev
 
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+stages:
+  - code style
+  - test
+
 jobs:
   include:
-  - php: 7.1
-    install: composer install --ignore-platform-reqs
-    addons: skip
-    env: CODE=STYLE
-    script: vendor/bin/php-cs-fixer fix --using-cache=no --verbose --dry-run
+    - name: Code Style
+      php: 7.1
+      install: composer install --ignore-platform-reqs
+      addons: skip
+      env: code_style=php-cs-fixer
+      script: vendor/bin/php-cs-fixer fix --using-cache=no --verbose --dry-run
 
 install:
   - git clone --branch=release https://github.com/krakjoe/ui
