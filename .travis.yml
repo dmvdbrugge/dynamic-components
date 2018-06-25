@@ -5,17 +5,26 @@ php:
   - 7.2
   - nightly
 
+matrix:
+  allow_failures:
+  - php: nightly
+
 addons:
   apt:
     packages:
       - libgtk-3-dev
 
+jobs:
+  include:
+  - stage: Code Style
+    php: 7.1
+    install: composer install --ignore-platform-reqs
+    script: vendor/bin/php-cs-fixer fix --using-cache=no --verbose --dry-run
+
 install:
   - git clone --branch=release https://github.com/krakjoe/ui
   - cd ui
-  - mkdir deps
-  - mkdir deps/lib
-  - mkdir deps/include
+  - mkdir -p deps/{lib,include}
   - git clone --depth=1 https://github.com/andlabs/libui
   - cd libui
   - mkdir build
