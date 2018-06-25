@@ -19,8 +19,8 @@ cache:
     - $HOME/.composer/cache/files
 
 stages:
-  - code style
-  - test
+  - Code Style
+  - Test
 
 jobs:
   include:
@@ -28,7 +28,6 @@ jobs:
       php: 7.1
       install: composer install --ignore-platform-reqs
       addons: skip
-      env: code_style=php-cs-fixer
       script: vendor/bin/php-cs-fixer fix --using-cache=no --verbose --dry-run
 
 install:
