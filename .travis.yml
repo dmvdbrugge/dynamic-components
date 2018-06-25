@@ -24,7 +24,7 @@ stages:
 
 jobs:
   include:
-    - name: Code Style
+    - stage: Code Style
       php: 7.1
       install: composer install --ignore-platform-reqs
       addons: skip
