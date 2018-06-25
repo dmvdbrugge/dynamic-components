@@ -16,8 +16,7 @@ addons:
 
 jobs:
   include:
-  - stage: Code Style
-    php: 7.1
+  - php: 7.1
     install: composer install --ignore-platform-reqs
     script: vendor/bin/php-cs-fixer fix --using-cache=no --verbose --dry-run
 
