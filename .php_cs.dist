@@ -10,7 +10,6 @@ return Config::create()
     ->setFinder($finder)
     ->setRiskyAllowed(true)
     ->setRules([
-        '@PSR2'                   => true,
         '@Symfony'                => true,
         'align_multiline_comment' => [
             'comment_type' => 'all_multiline',
