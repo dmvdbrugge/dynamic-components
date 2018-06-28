@@ -9,10 +9,10 @@ matrix:
   allow_failures:
     - php: nightly
 
-#addons:
-#  apt:
-#    packages:
-#      - libgtk-3-dev
+addons:
+  apt:
+    packages:
+      - libgtk-3-dev
 
 cache:
   directories:
