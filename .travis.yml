@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - 7.1
+  - 7.1.18
   - 7.2
   - nightly
 
@@ -19,8 +19,8 @@ cache:
     - $HOME/.composer/cache/files
 
 stages:
-  - code style
   - test
+  - code style
 
 jobs:
   include:
