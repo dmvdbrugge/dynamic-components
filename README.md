@@ -4,31 +4,22 @@ Features advanced versions of the basic controls provided by the extension.
 
 [![Build Status](https://travis-ci.org/dmvdbrugge/dynamic-components.svg?branch=master)](https://travis-ci.org/dmvdbrugge/dynamic-components)
 
-## Disclaimer
-This is still a work in progress.
-
-**TODO**
-* Update this README with documentation and examples
-* Enable tests in Travis once ui can be built again
-* Tag either v0.1.0 or v1.0.0 :wink:
-
 ## Usage
-*TODO: Describe usage*
+`// TODO: Describe usage`
 
 ## API
 
 ### Basic Controls
-*TODO: Describe basic Controls*
+`// TODO: Describe basic Controls`
 
 ### Advanced Controls
-*TODO: Describe AdvancedControls*
+`// TODO: Describe AdvancedControls`
 
 ## Installation
 Dynamic Components is just a single composer call away:
 ```
-composer require dmvdbrugge/dynamic-components dev-master
+composer require dmvdbrugge/dynamic-components
 ```
-As there are no releases yet, don't leave out the last argument.
 
 ## Background
 [csv2qif](https://github.com/dmvdbrugge/csv2qif) was a happy little commandline tool, until I stumbled upon the [PHP UI
