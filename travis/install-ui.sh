@@ -2,12 +2,12 @@
 
 # Get ui and setup dependency dirs
 git clone --depth=2 https://github.com/krakjoe/ui
-cd ui && git checkout 34276321ec891542b6a90da717a59d5066bac4ec
-mkdir -p deps/{lib,include}
+cd ui && mkdir -p deps/{lib,include}
 
 # Clone and build libui
-git clone --depth=1 https://github.com/andlabs/libui
-cd libui && mkdir build && cd build
+git clone https://github.com/andlabs/libui
+cd libui && git checkout bad2325323310832b17288bd883d85f2c95a4f19
+mkdir build && cd build
 cmake ..
 make -j4
 
