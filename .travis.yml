@@ -8,8 +8,8 @@ php:
 matrix:
   allow_failures:
     - php:
-      - nightly
       - 7.2
+      - nightly
 
 addons:
   apt:
@@ -21,8 +21,8 @@ cache:
     - $HOME/.composer/cache/files
 
 stages:
-  - test
   - code style
+  - test
 
 jobs:
   include:
