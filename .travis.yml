@@ -34,4 +34,4 @@ jobs:
 
 install:
   - ./travis/install-ui.sh
-  - make vendor/autoload.php
+  - xvfb-run make vendor/autoload.php
