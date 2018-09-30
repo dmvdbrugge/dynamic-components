@@ -1,14 +1,15 @@
 language: php
 
 php:
-  # This appears to be the latest the extension builds against :(
-  - 7.1.0
-#  - 7.2
-#  - nightly
+  - 7.1.0 # This appears to be the latest the extension builds against :(
+  - 7.2
+  - nightly
 
 matrix:
   allow_failures:
-    - php: nightly
+    - php:
+      - nightly
+      - 7.2
 
 addons:
   apt:
