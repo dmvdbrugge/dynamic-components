@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Get ui and setup dependency dirs
-git clone --depth=2 https://github.com/krakjoe/ui
-cd ui && mkdir -p deps/{lib,include}
+wget https://pecl.php.net/get/UI-2.0.0.tgz
+tar -xzf UI-2.0.0.tgz
+cd UI-2.0.0 && mkdir -p deps/{lib,include}
 
 # Clone and build libui
 git clone https://github.com/andlabs/libui
