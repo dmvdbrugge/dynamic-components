@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Get ui from pecl and setup dependency dirs
-wget https://pecl.php.net/get/UI-2.0.0.tgz
-tar -xzf UI-2.0.0.tgz
-cd UI-2.0.0 && mkdir -p deps/{lib,include}
+# Get ui and setup dependency dirs
+git clone --depth=1 https://github.com/krakjoe/ui
+cd ui && mkdir -p deps/{lib,include}
 
 # Clone and build libui
-git clone https://github.com/andlabs/libui
-git checkout ce37d12d230cea529bf6f5ac1d3bc76b9a75bbbd
+git clone --depth=1 https://github.com/andlabs/libui
 cd libui && mkdir build && cd build
 cmake ..
 make -j4
