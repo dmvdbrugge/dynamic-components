@@ -14,7 +14,6 @@ matrix:
 addons:
   apt:
     packages:
-      - xvfb
       - libgtk-3-dev
 
 cache:
@@ -36,3 +35,5 @@ jobs:
 install:
   - ./travis/install-ui.sh
   - xvfb-run make vendor/autoload.php
+
+script: xvfb-run make tests
