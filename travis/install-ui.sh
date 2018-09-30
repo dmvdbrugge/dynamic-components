@@ -6,7 +6,7 @@ cd ui && mkdir -p deps/{lib,include}
 
 # Clone and build libui
 git clone https://github.com/andlabs/libui
-cd libui && git checkout bad2325323310832b17288bd883d85f2c95a4f19
+cd libui && git checkout ce37d12d230cea529bf6f5ac1d3bc76b9a75bbbd
 mkdir build && cd build
 cmake ..
 make -j4
