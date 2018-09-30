@@ -1,7 +1,7 @@
 language: php
 
 php:
-# This appears to be the latest the extension builds against :(
+  # This appears to be the latest the extension builds against :(
   - 7.1.0
 #  - 7.2
 #  - nightly
