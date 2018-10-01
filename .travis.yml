@@ -31,7 +31,6 @@ matrix:
       language: generic
       addons: skip
       before_install:
-        - brew tap homebrew/php
         - brew update
         - brew install php71
         - curl https://getcomposer.org/installer | php
