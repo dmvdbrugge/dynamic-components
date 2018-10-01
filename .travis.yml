@@ -12,6 +12,8 @@ php:
 #      - 7.2
 #      - nightly
 
+os: linux
+
 addons:
   apt:
     packages:
@@ -25,10 +27,9 @@ install:
   - ./travis/install-ui.sh
   - xvfb-run make vendor/autoload.php
 
-jobs:
+matrix:
   include:
-    - stage: test
-      os: osx
+    - os: osx
       language: generic
       addons: skip
       before_install:
