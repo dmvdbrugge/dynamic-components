@@ -1,15 +1,6 @@
 language: php
 
 php: 7.1
-# Below is all commented out because cannot be built atm
-#  - 7.2
-#  - nightly
-
-#matrix:
-#  allow_failures:
-#    - php:
-#      - 7.2
-#      - nightly
 
 addons:
   apt:
@@ -25,6 +16,9 @@ install:
   - ./travis/install-ui.sh
 
 matrix:
+  allow_failures:
+  - os: linux
+  fast_finish: true
   include:
     - os: linux
     - os: osx
