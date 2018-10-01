@@ -27,7 +27,8 @@ install:
 
 jobs:
   include:
-    - os: osx
+    - stage: test
+      os: osx
       language: generic
       addons: skip
       before_install:
