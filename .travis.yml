@@ -25,4 +25,13 @@ install:
   - ./travis/install-ui.sh
   - xvfb-run make vendor/autoload.php
 
+matrix:
+  include:
+    - os: osx
+      before_install:
+        - brew tap homebrew/php
+        - brew update
+        - brew install php71
+        - curl https://getcomposer.org/installer | php
+
 script: xvfb-run make tests
