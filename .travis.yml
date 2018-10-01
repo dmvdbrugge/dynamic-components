@@ -1,35 +1,36 @@
 language: php
 
-#php:
-#  - 7.1
-#  - 7.2
-#  - nightly
+php: 7.1
 
-#matrix:
-#  allow_failures:
-#    - php: nightly
-
-#addons:
-#  apt:
-#    packages:
-#      - libgtk-3-dev
+addons:
+  apt:
+    packages:
+      - libgtk-3-dev
 
 cache:
   directories:
     - $HOME/.composer/cache/files
-
-stages:
-  - code style
-  - test
-
-jobs:
-  include:
-    - stage: code style
-      php: 7.1
-      install: composer install --ignore-platform-reqs
-      addons: skip
-      script: vendor/bin/php-cs-fixer fix --using-cache=no --verbose --dry-run
+    - $HOME/Library/Caches/Homebrew
 
 install:
   - ./travis/install-ui.sh
-  - make vendor/autoload.php
+
+matrix:
+  allow_failures:
+  - os: linux
+  fast_finish: true
+  include:
+    - os: linux
+    - os: osx
+      language: generic
+      addons: skip
+      before_install:
+        - brew update
+        - brew install php71
+        - export PATH="/usr/local/opt/php@7.1/bin:$PATH"
+        - export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
+        - curl https://getcomposer.org/installer | php
+
+script:
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then xvfb-run make tests; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then make tests; fi
