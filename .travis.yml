@@ -1,16 +1,6 @@
 language: php
 
-php:
-  - 7.1
-# Below is all commented out because cannot be built atm
-#  - 7.2
-#  - nightly
-
-#matrix:
-#  allow_failures:
-#    - php:
-#      - 7.2
-#      - nightly
+php: 7.1
 
 addons:
   apt:
@@ -20,9 +10,27 @@ addons:
 cache:
   directories:
     - $HOME/.composer/cache/files
+    - $HOME/Library/Caches/Homebrew
 
 install:
   - ./travis/install-ui.sh
-  - xvfb-run make vendor/autoload.php
 
-script: xvfb-run make tests
+matrix:
+  allow_failures:
+  - os: linux
+  fast_finish: true
+  include:
+    - os: linux
+    - os: osx
+      language: generic
+      addons: skip
+      before_install:
+        - brew update
+        - brew install php71
+        - export PATH="/usr/local/opt/php@7.1/bin:$PATH"
+        - export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
+        - curl https://getcomposer.org/installer | php
+
+script:
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then xvfb-run make tests; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then make tests; fi
