@@ -25,7 +25,7 @@ install:
   - ./travis/install-ui.sh
   - xvfb-run make vendor/autoload.php
 
-matrix:
+jobs:
   include:
     - os: osx
       language: generic
