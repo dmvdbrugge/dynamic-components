@@ -1,7 +1,6 @@
 language: php
 
-php:
-  - 7.1
+php: 7.1
 # Below is all commented out because cannot be built atm
 #  - 7.2
 #  - nightly
