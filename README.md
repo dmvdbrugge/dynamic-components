@@ -33,4 +33,4 @@ providing a reason to let their actionable control-friends (check, entry, etc.) 
 ## License
 MIT License
 
-Copyright (c) 2018 Dave van der Brugge
+Copyright (c) 2018-2019 Dave van der Brugge
