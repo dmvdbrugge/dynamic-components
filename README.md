@@ -8,8 +8,8 @@ Features advanced versions of the basic controls provided by the extension.
 See the [examples](https://github.com/dmvdbrugge/dynamic-components/tree/master/examples), which feature several
 Controls used in different ways and coding styles. Every example is a fully working program and can be run directly with
 php, given of course the extension is enabled. See also [csv2qif](https://github.com/dmvdbrugge/csv2qif)'s
-[FileSelect](https://github.com/dmvdbrugge/csv2qif/blob/master/app/UiComponents/FileSelect.php) for a more advanced
-version of the filepicker. (Or any of its other `UiComponents`. It's kicked off in `app/Command/Ui.php` but that's the
+[FileSelect](https://github.com/dmvdbrugge/csv2qif/blob/master/src/UiComponents/FileSelect.php) for a more advanced
+version of the filepicker. (Or any of its other `UiComponents`. It's kicked off in `src/Command/Ui.php` but that's the
 boring part.)
 
 ## API
