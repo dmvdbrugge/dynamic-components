@@ -23,6 +23,19 @@ class SliderTest extends TestCase
         self::assertEquals(2, self::getCount());
     }
 
+    public function testMinMaxWorkBothWays(): void
+    {
+        $slider = new Slider(0, 100);
+
+        self::assertEquals(0, $slider->getMin());
+        self::assertEquals(100, $slider->getMax());
+
+        $flipped = new Slider(100, 0);
+
+        self::assertEquals(0, $flipped->getMin());
+        self::assertEquals(100, $flipped->getMax());
+    }
+
     public function testSliderWithoutCallbackAndSetOnChange(): void
     {
         $slider = new Slider(0, 10);

@@ -23,6 +23,19 @@ class SpinTest extends TestCase
         self::assertEquals(2, self::getCount());
     }
 
+    public function testMinMaxWorkBothWays(): void
+    {
+        $slider = new Spin(0, 100);
+
+        self::assertEquals(0, $slider->getMin());
+        self::assertEquals(100, $slider->getMax());
+
+        $flipped = new Spin(100, 0);
+
+        self::assertEquals(0, $flipped->getMin());
+        self::assertEquals(100, $flipped->getMax());
+    }
+
     public function testSpinWithoutCallbackAndSetOnChange(): void
     {
         $spin = new Spin(0, 10);

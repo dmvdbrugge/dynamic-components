@@ -20,7 +20,7 @@ class Spin extends \UI\Controls\Spin
     {
         parent::__construct($min, $max);
 
-        // Yes \UI\Controls\Spin excepts them the other way around...
+        // Yes \UI\Controls\Spin accepts them the other way around too...
         $this->max = max($min, $max);
         $this->min = min($min, $max);
 

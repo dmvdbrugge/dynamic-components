@@ -2,6 +2,7 @@
     <testsuites>
         <testsuite name="unittests">
             <directory>tests/Unit</directory>
+            <directory>tests/HelperTests</directory>
         </testsuite>
     </testsuites>
 </phpunit>

@@ -20,7 +20,7 @@ class Slider extends \UI\Controls\Slider
     {
         parent::__construct($min, $max);
 
-        // Yes \UI\Controls\Slider excepts them the other way around...
+        // Yes \UI\Controls\Slider accepts them the other way around too...
         $this->max = max($min, $max);
         $this->min = min($min, $max);
 
