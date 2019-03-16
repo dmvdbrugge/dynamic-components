@@ -4,8 +4,15 @@ namespace Tests\Helpers;
 
 use InvalidArgumentException;
 use ReflectionClass;
+use UI\Area;
 use UI\Control;
 use UI\Controls;
+use UI\Draw\Pen;
+use UI\Executor;
+use UI\MenuItem;
+use UI\Point;
+use UI\Size;
+use UI\Window;
 
 use function get_class;
 
@@ -22,15 +29,41 @@ class ActionSimulator
         Controls\Radio::class          => 'onSelected',
         Controls\Slider::class         => 'onChange',
         Controls\Spin::class           => 'onChange',
+        Window::class                  => 'onClosing',
     ];
 
     public static function act(Control $control): void
     {
-        $class  = new ReflectionClass($control);
-        $name   = self::getActionMethod($control);
-        $method = $class->getMethod($name);
-        $method->setAccessible(true);
-        $method->invokeArgs($control, []);
+        if ($control instanceof Area) {
+            throw new InvalidArgumentException('Area has multiple possible actions, use the specific methods.');
+        }
+
+        self::invokeMethod($control, self::getActionMethod($control));
+    }
+
+    public static function clickMenuItem(MenuItem $menuItem): void
+    {
+        self::invokeMethod($menuItem, 'onClick');
+    }
+
+    public static function drawArea(Area $area, Pen $pen, Size $areaSize, Point $clipPoint, Size $clipSize): void
+    {
+        self::invokeMethod($area, 'onDraw', [$pen, $areaSize, $clipPoint, $clipSize]);
+    }
+
+    public static function executeExecutor(Executor $executor): void
+    {
+        self::invokeMethod($executor, 'onExecute');
+    }
+
+    public static function keyArea(Area $area, string $key, int $ext, int $flags): void
+    {
+        self::invokeMethod($area, 'onKey', [$key, $ext, $flags]);
+    }
+
+    public static function mouseArea(Area $area, Point $areaPoint, Size $areaSize, int $flags): void
+    {
+        self::invokeMethod($area, 'onMouse', [$areaPoint, $areaSize, $flags]);
     }
 
     private static function getActionMethod(Control $control): string
@@ -47,6 +80,13 @@ class ActionSimulator
             }
         }
 
-        throw new InvalidArgumentException(get_class($control) . ' is not one of UI\Controls');
+        throw new InvalidArgumentException(get_class($control) . ' is not an actionable UI\Control.');
+    }
+
+    private static function invokeMethod($object, string $methodName, array $args = []): void
+    {
+        $method = (new ReflectionClass($object))->getMethod($methodName);
+        $method->setAccessible(true);
+        $method->invokeArgs($object, $args);
     }
 }
