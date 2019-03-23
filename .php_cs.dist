@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
@@ -26,7 +26,8 @@ return Config::create()
         'binary_operator_spaces' => [
             'default' => 'align_single_space_minimal',
         ],
-        'blank_line_before_statement' => [
+        'blank_line_after_opening_tag' => false,
+        'blank_line_before_statement'  => [
             'statements' => [
                 'break', 'continue', 'case', 'declare', 'default', 'do', 'for', 'foreach',
                 'if', 'return', 'switch', 'throw', 'try', 'while', 'yield',
@@ -39,6 +40,7 @@ return Config::create()
         'concat_space'               => [
             'spacing' => 'one',
         ],
+        'declare_strict_types'         => true,
         'dir_constant'                 => true,
         'escape_implicit_backslashes'  => true,
         'explicit_indirect_variable'   => true,

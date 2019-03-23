@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 if (!extension_loaded('ui')) {
     die('UI extension not enabled.');
