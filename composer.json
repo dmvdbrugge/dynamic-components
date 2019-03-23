@@ -11,7 +11,8 @@
     ],
     "require": {
         "php": ">= 7.1",
-        "ext-ui": "*"
+        "ext-ui": "*",
+        "webmozart/assert": "^1.0"
     },
     "autoload": {
         "psr-4": {
