@@ -2,7 +2,7 @@
 
 namespace DynamicComponents\Controls;
 
-use UI\Exception\InvalidArgumentException;
+use Webmozart\Assert\Assert;
 
 class MultilineEntry extends \UI\Controls\MultilineEntry
 {
@@ -23,9 +23,7 @@ class MultilineEntry extends \UI\Controls\MultilineEntry
         string $text = '',
         bool $readOnly = false
     ) {
-        if (!in_array($type, self::TYPES)) {
-            throw new InvalidArgumentException("Type {$type} is not a valid MultilineEntry type.");
-        }
+        Assert::oneOf($type, self::TYPES, "Type {$type} is not a valid MultilineEntry type.");
 
         parent::__construct($type);
 

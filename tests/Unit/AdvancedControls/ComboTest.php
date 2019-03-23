@@ -3,7 +3,9 @@
 namespace Tests\Unit\AdvancedControls;
 
 use DynamicComponents\AdvancedControls\Combo;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 use Tests\Helpers\ActionSimulator;
 
 use function array_merge;
@@ -49,5 +51,33 @@ class ComboTest extends TestCase
         $combo->append('Not empty anymore!');
         self::assertEquals(-1, $combo->getSelected());
         self::assertEquals('', $combo->getSelectedText());
+    }
+
+    /**
+     * @dataProvider dpComboSelectedValue
+     */
+    public function testComboSelectedValue($value, ?string $message): void
+    {
+        if ($message !== null) {
+            $this->expectExceptionObject(new InvalidArgumentException($message));
+        }
+
+        new Combo(['This', 'is-a', 'test'], null, $value);
+
+        if ($message === null) {
+            $this->addToAssertionCount(1);
+        }
+    }
+
+    public function dpComboSelectedValue(): array
+    {
+        return [
+            'int'    => [1, null],
+            'float'  => [1.0, null],
+            'string' => ['is-a', null],
+            'bool'   => [true, 'Selected should be either a string or an integer, got boolean.'],
+            'object' => [new stdClass(), 'Selected should be either a string or an integer, got stdClass.'],
+            'array'  => [[], 'Selected should be either a string or an integer, got array.'],
+        ];
     }
 }

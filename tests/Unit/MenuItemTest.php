@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use BadMethodCallException;
 use DynamicComponents\Menu;
 use DynamicComponents\MenuItem;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Tests\Helpers\ActionSimulator;
 use UI\Menu as UiMenu;
@@ -89,5 +90,32 @@ class MenuItemTest extends TestCase
         $this->expectExceptionObject(new BadMethodCallException($message));
 
         $item->setParent($viewMenu);
+    }
+
+    public function testSetEmptyNameFails(): void
+    {
+        $runMenu = new UiMenu('Run');
+
+        /** @var MenuItem $runItem */
+        $runItem = $runMenu->append('Run...', MenuItem::class);
+
+        $message = 'Cannot set an empty name on a DynamicComponents\MenuItem.';
+        $this->expectExceptionObject(new InvalidArgumentException($message));
+
+        $runItem->setName('');
+    }
+
+    public function testSetNameAgainFails(): void
+    {
+        $windowMenu = new Menu('Window');
+
+        /** @var MenuItem $item */
+        $item = $windowMenu->append('dynamic-components');
+
+        $message = 'Cannot set a name (csv2qif) on an already named MenuItem' .
+            ' (DynamicComponents\MenuItem: dynamic-components).';
+        $this->expectExceptionObject(new BadMethodCallException($message));
+
+        $item->setName('csv2qif');
     }
 }

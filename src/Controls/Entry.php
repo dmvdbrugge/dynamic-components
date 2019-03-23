@@ -2,9 +2,7 @@
 
 namespace DynamicComponents\Controls;
 
-use UI\Exception\InvalidArgumentException;
-
-use function in_array;
+use Webmozart\Assert\Assert;
 
 class Entry extends \UI\Controls\Entry
 {
@@ -26,9 +24,7 @@ class Entry extends \UI\Controls\Entry
         string $text = '',
         bool $readOnly = false
     ) {
-        if (!in_array($type, self::TYPES)) {
-            throw new InvalidArgumentException("Type {$type} is not a valid Entry type.");
-        }
+        Assert::oneOf($type, self::TYPES, "Type {$type} is not a valid Entry type.");
 
         parent::__construct($type);
 

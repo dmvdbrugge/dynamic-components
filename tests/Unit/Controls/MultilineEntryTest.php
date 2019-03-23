@@ -3,9 +3,9 @@
 namespace Tests\Unit\Controls;
 
 use DynamicComponents\Controls\MultilineEntry;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Tests\Helpers\ActionSimulator;
-use UI\Exception\InvalidArgumentException;
 
 class MultilineEntryTest extends TestCase
 {

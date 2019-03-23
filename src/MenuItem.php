@@ -3,6 +3,7 @@
 namespace DynamicComponents;
 
 use BadMethodCallException;
+use Webmozart\Assert\Assert;
 
 use function get_class;
 
@@ -62,6 +63,15 @@ class MenuItem extends \UI\MenuItem
      */
     public function setName(string $name): void
     {
+        $class = static::class;
+        Assert::notEmpty($name, "Cannot set an empty name on a {$class}.");
+
+        if ($this->name) {
+            throw new BadMethodCallException(
+                "Cannot set a name ({$name}) on an already named MenuItem ({$class}: {$this->name})."
+            );
+        }
+
         $this->name = $name;
     }
 

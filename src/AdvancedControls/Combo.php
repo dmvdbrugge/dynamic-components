@@ -2,8 +2,9 @@
 
 namespace DynamicComponents\AdvancedControls;
 
+use Webmozart\Assert\Assert;
+
 use function array_search;
-use function is_int;
 use function is_string;
 
 class Combo extends \DynamicComponents\Controls\Combo
@@ -18,13 +19,17 @@ class Combo extends \DynamicComponents\Controls\Combo
      */
     public function __construct(array $options, ?callable $onSelected = null, $selected = 0)
     {
+        if (!is_string($selected)) {
+            Assert::integerish($selected, 'Selected should be either a string or an integer, got %s.');
+        }
+
         parent::__construct($onSelected);
 
         $this->appendAll($options);
 
-        if (is_int($selected)) {
-            $this->setSelected($selected);
-        } elseif (is_string($selected)) {
+        if (!is_string($selected)) {
+            $this->setSelected((int) $selected);
+        } else {
             $this->setSelectedText($selected);
         }
     }
