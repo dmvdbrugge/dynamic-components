@@ -14,7 +14,7 @@ class Radio extends \DynamicComponents\Controls\Radio
 
     /**
      * @param string[]      $options    Keys are ignored!
-     * @param callable|null $onSelected Gets $this as first param
+     * @param callable|null $onSelected Gets $this as last (only) param
      * @param int|string    $selected   Index or text of option to be selected
      */
     public function __construct(array $options, ?callable $onSelected = null, $selected = -1)
