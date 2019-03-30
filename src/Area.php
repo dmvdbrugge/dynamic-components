@@ -39,21 +39,21 @@ class Area extends \UI\Area
         $this->onMouse = $onMouse;
     }
 
-    protected function onDraw(Pen $pen, Size $areaSize, Point $clipPoint, Size $clipSize)
+    protected function onDraw(Pen $pen, Size $areaSize, Point $clipPoint, Size $clipSize): void
     {
         if ($onDraw = $this->onDraw) {
             $onDraw($pen, $areaSize, $clipPoint, $clipSize, $this);
         }
     }
 
-    protected function onKey(string $key, int $ext, int $flags)
+    protected function onKey(string $key, int $ext, int $flags): void
     {
         if ($onKey = $this->onKey) {
             $onKey($key, $ext, $flags, $this);
         }
     }
 
-    protected function onMouse(Point $areaPoint, Size $areaSize, int $flags)
+    protected function onMouse(Point $areaPoint, Size $areaSize, int $flags): void
     {
         if ($onMouse = $this->onMouse) {
             $onMouse($areaPoint, $areaSize, $flags, $this);

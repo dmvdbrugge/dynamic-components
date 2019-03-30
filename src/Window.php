@@ -50,7 +50,7 @@ class Window extends \UI\Window
         $this->onClosing = $onClosing;
     }
 
-    protected function onClosing()
+    protected function onClosing(): void
     {
         if ($this->onClosing && ($this->onClosing)($this) === false) {
             return;
