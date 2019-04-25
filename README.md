@@ -252,9 +252,11 @@ public function setOnExecute(callable $onExecute): void
 public function __construct(string $name)
 
 // Relevant override (default param changes)
-public function append(string $name = '', string $type = \DynamicComponents\MenuItem::class): \UI\MenuItem
+public function append(string $name, string $type = \DynamicComponents\MenuItem::class): \UI\MenuItem
 
 // Additional methods
+public function add(string $name): \DynamicComponents\MenuItem
+public function addAs(string $type, string $name): \UI\MenuItem
 public function getName(): string
 public function getMenuItemName(\UI\MenuItem $menuItem): string
 public function hasMenuItem(\UI\MenuItem $menuItem): bool
@@ -264,6 +266,10 @@ public function hasMenuItem(\UI\MenuItem $menuItem): bool
 with a `UI\Menu`, using a `DynamicComponents\Menu` has the following advantages: it adds itself as parent, it sets the
 `MenuItem`'s name, and it has `DynamicComponents\MenuItem` as default in `append()`. It's fully backwards compatible
 though, so you can still create `UI\MenuItem`s with it.
+
+To facilitate both stricter typing and supporting PhpStorm's Advanced Metadata, `add()` has been added as correctly
+typed shortcut, together with `addAs()` which has arguments flipped compared to `append()` for type detection (which
+only works on the first param).
 
 #### MenuItem
 [`DynamicComponents\MenuItem`](src/MenuItem.php)` extends `[`UI\MenuItem`](https://secure.php.net/manual/en/class.ui-menuitem.php)

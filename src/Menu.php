@@ -24,6 +24,16 @@ class Menu extends UiMenu
         $this->items = new SplObjectStorage();
     }
 
+    public function add(string $name): MenuItem
+    {
+        return $this->append($name, MenuItem::class);
+    }
+
+    public function addAs(string $type, string $name): UiMenuItem
+    {
+        return $this->append($name, $type);
+    }
+
     public function append(string $name = '', string $type = MenuItem::class): UiMenuItem
     {
         Assert::notEmpty($name, "Provide a \$name to append to Menu '{$this->name}'.");

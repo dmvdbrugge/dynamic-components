@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
+use DynamicComponents\Controls\MultilineEntry;
 use DynamicComponents\Menu;
 use DynamicComponents\MenuItem;
 use DynamicComponents\Window;
-use UI\Controls\MultilineEntry;
 use UI\Size;
 
 use function UI\quit;
@@ -12,19 +12,12 @@ use function UI\run;
 require_once __DIR__ . '/bootstrap.php';
 
 $file = new Menu('File');
-
-/** @var MenuItem $new */
-$new = $file->append('New');
-
-/** @var MenuItem $open */
-$open = $file->append('Open');
+$new  = $file->add('New');
+$open = $file->add('Open');
 $file->appendSeparator();
 
-/** @var MenuItem $save */
-$save = $file->append('Save');
-
-/** @var MenuItem $saveAs */
-$saveAs = $file->append('Save As');
+$save   = $file->add('Save');
+$saveAs = $file->add('Save As');
 $file->appendSeparator();
 
 // These items receive no click events, so we cannot do anything with them, and they don't do anything by themselves.
@@ -36,18 +29,14 @@ $file->appendAbout();
 $file->appendPreferences();
 $file->appendQuit();
 
-/** @var MenuItem $quit */
-$quit = $file->append('Quit for real');
+$quit = $file->add('Quit for real');
 
-$log = new Menu('Log');
-
-/** @var MenuItem $check */
-$check = $log->append('Log menu clicks');
+$log   = new Menu('Log');
+$check = $log->add('Log menu clicks');
 $check->setChecked(true);
 $log->appendSeparator();
 
-/** @var MenuItem $clear */
-$clear = $log->append('Clear Log');
+$clear = $log->add('Clear Log');
 
 // OSX: No items, yet these menu names magically have items appended, with which we cannot interact.
 $edit = new Menu('Edit');

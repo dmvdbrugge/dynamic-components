@@ -57,4 +57,28 @@ class MenuTest extends TestCase
 
         $windowMenu->getMenuItemName($reportMenuItem);
     }
+
+    public function testAddWorks(): void
+    {
+        $runMenu     = new Menu('Run');
+        $runMenuItem = $runMenu->add('Run...');
+
+        self::assertTrue($runMenu->hasMenuItem($runMenuItem));
+        self::assertEquals('Run...', $runMenu->getMenuItemName($runMenuItem));
+        self::assertEquals('Run...', $runMenuItem->getName());
+        self::assertSame($runMenu, $runMenuItem->getParent());
+    }
+
+    public function testAddAsWorks(): void
+    {
+        $toolsMenu     = new Menu('Tools');
+        $stubsMenuItem = $toolsMenu->addAs(MenuItemStub::class, 'Stubs');
+
+        self::assertInstanceOf(MenuItemStub::class, $stubsMenuItem);
+        self::assertEquals('Stubs', $stubsMenuItem->getName());
+    }
+}
+
+class MenuItemStub extends MenuItem
+{
 }
