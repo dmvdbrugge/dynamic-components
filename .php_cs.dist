@@ -4,12 +4,13 @@ use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
 /**
- * Last processed php-cs-fixer release: v2.13.0.
+ * Last processed php-cs-fixer release: v2.15.0.
  *
  * @see https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases
  */
 $finder = Finder::create()
-    ->in(__DIR__);
+    ->in(__DIR__)
+    ->name('.php_cs.dist');
 
 return Config::create()
     ->setFinder($finder)
@@ -50,6 +51,8 @@ return Config::create()
         'header_comment'               => [
             'header' => '',
         ],
+        // Enable this if required version ever reaches 7.3+
+        // 'heredoc_indentation' => true,
         'increment_style' => [
             'style' => 'post',
         ],
@@ -59,13 +62,14 @@ return Config::create()
         'list_syntax' => [
             'syntax' => 'short',
         ],
-        'method_chaining_indentation'            => true,
-        'modernize_types_casting'                => true,
-        'multiline_comment_opening_closing'      => true,
-        'multiline_whitespace_before_semicolons' => true,
-        'no_alias_functions'                     => true,
-        'no_alternative_syntax'                  => true,
-        'no_extra_blank_lines'                   => [
+        'method_chaining_indentation'             => true,
+        'modernize_types_casting'                 => true,
+        'multiline_comment_opening_closing'       => true,
+        'multiline_whitespace_before_semicolons'  => true,
+        'native_function_type_declaration_casing' => true,
+        'no_alias_functions'                      => true,
+        'no_alternative_syntax'                   => true,
+        'no_extra_blank_lines'                    => [
             'tokens' => [
                 'break', 'case', 'continue', 'curly_brace_block', 'default', 'extra', 'parenthesis_brace_block',
                 'return', 'square_brace_block', 'throw', 'use_trait',
@@ -75,6 +79,7 @@ return Config::create()
         'no_null_property_initialization' => true,
         'no_superfluous_elseif'           => true,
         'no_superfluous_phpdoc_tags'      => true,
+        'no_unset_cast'                   => true,
         'no_unset_on_property'            => true,
         'no_useless_else'                 => true,
         'no_useless_return'               => true,
@@ -86,6 +91,7 @@ return Config::create()
         'php_unit_dedicate_assert' => [
             'target' => 'newest',
         ],
+        'php_unit_dedicate_assert_internal_type' => true,
         'php_unit_expectation'                   => true,
         'php_unit_no_expectation_annotation'     => true,
         'php_unit_set_up_tear_down_visibility'   => true,
@@ -104,11 +110,14 @@ return Config::create()
         'phpdoc_types_order'                            => [
             'null_adjustment' => 'always_last',
         ],
-        'pow_to_exponentiation'              => true,
-        'return_assignment'                  => true,
-        'simplified_null_return'             => true,
-        'single_class_element_per_statement' => true,
-        'space_after_semicolon'              => [
+        'phpdoc_var_annotation_correct_order' => true,
+        'pow_to_exponentiation'               => true,
+        'return_assignment'                   => true,
+        'simple_to_complex_string_variable'   => true,
+        'simplified_null_return'              => true,
+        'single_class_element_per_statement'  => true,
+        'single_trait_insert_per_statement'   => true,
+        'space_after_semicolon'               => [
             'remove_in_empty_for_expressions' => true,
         ],
         'yoda_style' => [
