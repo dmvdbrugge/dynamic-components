@@ -10,6 +10,7 @@ use PhpCsFixer\Finder;
  */
 $finder = Finder::create()
     ->in(__DIR__)
+    ->exclude('tmp') // Can be removed when ignoreVCSIgnored is available
     ->name('.php_cs.dist');
 
 return Config::create()
@@ -119,6 +120,12 @@ return Config::create()
         'single_trait_insert_per_statement'   => true,
         'space_after_semicolon'               => [
             'remove_in_empty_for_expressions' => true,
+        ],
+        'ternary_to_null_coalescing' => true,
+        'visibility_required'        => [
+            'elements' => [
+                'const', 'method', 'property',
+            ],
         ],
         'yoda_style' => [
             'equal'            => false,
